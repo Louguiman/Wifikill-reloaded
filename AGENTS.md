@@ -65,4 +65,15 @@ Out of scope for v1.0: TP-Link/Huawei adapters, advanced monitoring, cloud sync,
 
 ## Build
 
-No app code exists yet. When scaffolding is added, pin versions in `gradle/libs.versions.toml` and document the lint/test/typecheck commands here.
+Toolchain: JDK 17, Gradle 8.9 (wrapper), AGP 8.7.3, Kotlin 2.0.21, compileSdk/targetSdk 35, minSdk 29. Versions are pinned in `gradle/libs.versions.toml`.
+
+- `./gradlew test` — unit tests.
+- `./gradlew :app:assembleDebug` — debug APK.
+- `./gradlew lint` — Android lint.
+- `./gradlew :module:testDebugUnitTest` — single Android module tests.
+
+Local SDK path is `local.properties` (gitignored); CI uses the runner SDK.
+
+## Current state
+
+M1 walking skeleton (epics E01–E02) is scaffolded: Gradle multi-module graph, convention plugins, `core:common`, `core:domain` models/repositories/use-cases, design system, Hilt app shell, navigation, dashboard placeholder, core:testing fakes, and CI. Discovery, Room implementation, and router adapters are next (M2+).

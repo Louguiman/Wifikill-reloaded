@@ -8,7 +8,7 @@ WiFiKill Reloaded is a fresh product, not a clone of the original WiFiKill. It t
 
 ## Status
 
-Product planning. No application code yet. The documents in `docs/` define the product, data model, architecture, and interface contracts for the MVP.
+M1 — Walking Skeleton is scaffolded. The Gradle multi-module graph, convention plugins, `core:common`, `core:domain` contracts, design system, Hilt app shell, navigation, dashboard placeholder, and CI are in place. `./gradlew test :app:assembleDebug` passes. M2 (Room + discovery) is next.
 
 ## Documentation
 
@@ -21,6 +21,7 @@ Read in order:
 | 02 | [Database Architecture & ERD](docs/02-database-architecture.md) | Entities, relationships, indexes, Room entities/DAOs, retention, testing | Drafted |
 | 03 | [Application Architecture](docs/03-application-architecture.md) | Modules, dependency rules, discovery engine, router/root layers, security, background work, ADRs | Drafted |
 | 04 | [API & Interface Contracts](docs/04-api-contracts.md) | Domain models, discovery/device/router/access/diagnostics/monitoring/security contracts, use cases, event bus | Drafted |
+| 05 | [Repository Skeleton & Backlog](docs/05-repository-skeleton-and-backlog.md) | Gradle modules, version catalog, package layout, code skeletons, CI, epics/stories/tasks, milestones | Drafted |
 
 ## Key decisions
 
@@ -43,7 +44,7 @@ Explicitly excluded from v1.0: automatic Wi-Fi client disconnection, deauthentic
 
 ## Next milestone
 
-Technical Design 04 — Repository Skeleton & Implementation Backlog: Gradle multi-module setup, package structure, Hilt, Compose navigation, discovery foundation, router adapter registry, and AI-agent implementation tasks.
+Milestone M2 — Local discovery (epics E03–E06): Room entities/DAOs/migrations, network context and permissions, discovery engine, identity resolution, and device UI. See `docs/05-repository-skeleton-and-backlog.md` §14–§18.
 
 ## Assets
 
