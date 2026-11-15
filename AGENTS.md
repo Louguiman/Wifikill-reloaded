@@ -76,4 +76,4 @@ Local SDK path is `local.properties` (gitignored); CI uses the runner SDK.
 
 ## Current state
 
-M1 walking skeleton (epics E01–E02) is scaffolded: Gradle multi-module graph, convention plugins, `core:common`, `core:domain` models/repositories/use-cases, design system, Hilt app shell, navigation, dashboard placeholder, core:testing fakes, and CI. Discovery, Room implementation, and router adapters are next (M2+).
+M1–M4 are implemented: Gradle multi-module graph, convention plugins, `core:common`, `core:domain` models/repositories/use-cases, design system, Hilt app shell, navigation, CI; Room persistence and local discovery with network context, permissions, engine, identity resolution, and device UI; the router foundation with `RouterAdapter` registry, generic HTTP(S) adapter, Keystore-backed credentials, and router management UI; and verified access with OpenWrt + MikroTik adapters, router-authorized policies that are `ACTIVE` only after read-back verification, and an access management UI. M5 (diagnostics & monitoring: E07, E13) is next.

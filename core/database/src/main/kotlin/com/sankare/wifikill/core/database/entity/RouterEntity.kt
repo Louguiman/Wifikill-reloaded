@@ -1,5 +1,6 @@
 package com.sankare.wifikill.core.database.entity
 
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.Index
@@ -23,6 +24,10 @@ data class RouterEntity(
     val networkId: String,
     val name: String,
     val ipAddress: String,
+    @ColumnInfo(defaultValue = "443")
+    val port: Int = 443,
+    @ColumnInfo(defaultValue = "HTTPS")
+    val protocol: String = "HTTPS",
     val manufacturer: String? = null,
     val model: String? = null,
     val firmwareVersion: String? = null,

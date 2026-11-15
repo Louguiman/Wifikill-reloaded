@@ -8,7 +8,7 @@ WiFiKill Reloaded is a fresh product, not a clone of the original WiFiKill. It t
 
 ## Status
 
-M1 — Walking Skeleton is scaffolded. The Gradle multi-module graph, convention plugins, `core:common`, `core:domain` contracts, design system, Hilt app shell, navigation, dashboard placeholder, and CI are in place. `./gradlew test :app:assembleDebug` passes. M2 (Room + discovery) is next.
+M1–M4 are complete. The walking skeleton (Gradle multi-module graph, convention plugins, `core:common`, `core:domain` contracts, design system, Hilt app shell, navigation, CI) and local discovery (Room, network context, permission handling, discovery engine, identity resolution, device UI) are in place. The router foundation adds the `RouterAdapter` registry, a generic HTTP(S) adapter, Android Keystore-backed credential storage, and router management UI. M4 adds verified access: OpenWrt and MikroTik adapters plus router-authorized policies that become `ACTIVE` only after read-back verification, with an access management UI. `./gradlew test lint :app:assembleDebug` passes. M5 (diagnostics & monitoring) is next.
 
 ## Documentation
 
@@ -44,7 +44,7 @@ Explicitly excluded from v1.0: automatic Wi-Fi client disconnection, deauthentic
 
 ## Next milestone
 
-Milestone M2 — Local discovery (epics E03–E06): Room entities/DAOs/migrations, network context and permissions, discovery engine, identity resolution, and device UI. See `docs/05-repository-skeleton-and-backlog.md` §14–§18.
+Milestone M5 — Diagnostics & monitoring (epics E07, E13): gateway, DNS, and internet reachability distinguished; traffic sources labeled. See `docs/05-repository-skeleton-and-backlog.md` §15.
 
 ## Assets
 

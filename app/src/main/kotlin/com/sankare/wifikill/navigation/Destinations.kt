@@ -9,6 +9,7 @@ object Destinations {
     const val MONITORING = "monitoring"
     const val ACCESS = "access"
     const val ROUTERS = "routers"
+    const val ROUTER_ADD = "routers/add"
     const val DIAGNOSTICS = "diagnostics"
     const val HISTORY = "history"
     const val SETTINGS = "settings"

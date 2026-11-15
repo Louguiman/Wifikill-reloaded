@@ -11,10 +11,13 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.sankare.wifikill.core.designsystem.component.EmptyState
+import com.sankare.wifikill.feature.accessmanagement.AccessManagementScreen
 import com.sankare.wifikill.feature.dashboard.DashboardScreen
 import com.sankare.wifikill.feature.devices.DeviceDetailScreen
 import com.sankare.wifikill.feature.devices.DevicesScreen
 import com.sankare.wifikill.feature.discovery.DiscoveryScreen
+import com.sankare.wifikill.feature.routermanagement.AddRouterScreen
+import com.sankare.wifikill.feature.routermanagement.RouterManagementScreen
 
 @Composable
 fun WiFiKillNavHost() {
@@ -32,6 +35,8 @@ fun WiFiKillNavHost() {
                 DashboardScreen(
                     onOpenDiscovery = { navController.navigate(Destinations.DISCOVERY) },
                     onOpenDevices = { navController.navigate(Destinations.DEVICES) },
+                    onOpenRouters = { navController.navigate(Destinations.ROUTERS) },
+                    onOpenAccess = { navController.navigate(Destinations.ACCESS) },
                 )
             }
             composable(Destinations.DISCOVERY) {
@@ -64,10 +69,22 @@ fun WiFiKillNavHost() {
                 PlaceholderScreen("Monitoring")
             }
             composable(Destinations.ACCESS) {
-                PlaceholderScreen("Access Management")
+                AccessManagementScreen(
+                    onBack = { navController.popBackStack() },
+                    onOpenRouters = { navController.navigate(Destinations.ROUTERS) },
+                )
             }
             composable(Destinations.ROUTERS) {
-                PlaceholderScreen("Router Management")
+                RouterManagementScreen(
+                    onBack = { navController.popBackStack() },
+                    onAddRouter = { navController.navigate(Destinations.ROUTER_ADD) },
+                )
+            }
+            composable(Destinations.ROUTER_ADD) {
+                AddRouterScreen(
+                    onBack = { navController.popBackStack() },
+                    onSaved = { navController.popBackStack() },
+                )
             }
             composable(Destinations.DIAGNOSTICS) {
                 PlaceholderScreen("Diagnostics")

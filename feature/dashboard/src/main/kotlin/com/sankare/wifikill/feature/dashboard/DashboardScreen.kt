@@ -30,6 +30,8 @@ import com.sankare.wifikill.core.domain.model.NetworkType
 fun DashboardScreen(
     onOpenDiscovery: () -> Unit,
     onOpenDevices: () -> Unit,
+    onOpenRouters: () -> Unit,
+    onOpenAccess: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: DashboardViewModel = hiltViewModel(),
 ) {
@@ -38,6 +40,8 @@ fun DashboardScreen(
         state = state,
         onOpenDiscovery = onOpenDiscovery,
         onOpenDevices = onOpenDevices,
+        onOpenRouters = onOpenRouters,
+        onOpenAccess = onOpenAccess,
         modifier = modifier,
     )
 }
@@ -47,6 +51,8 @@ private fun DashboardContent(
     state: DashboardUiState,
     onOpenDiscovery: () -> Unit,
     onOpenDevices: () -> Unit,
+    onOpenRouters: () -> Unit,
+    onOpenAccess: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
     Column(
@@ -85,6 +91,20 @@ private fun DashboardContent(
             modifier = Modifier.fillMaxWidth(),
         ) {
             Text("View devices (${state.deviceCount})")
+        }
+
+        OutlinedButton(
+            onClick = onOpenRouters,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text("Manage routers")
+        }
+
+        OutlinedButton(
+            onClick = onOpenAccess,
+            modifier = Modifier.fillMaxWidth(),
+        ) {
+            Text("Access policies")
         }
 
         if (!state.isLoading && state.network == null) {
@@ -199,6 +219,8 @@ private fun DashboardScreenPreview() {
             ),
             onOpenDiscovery = {},
             onOpenDevices = {},
+            onOpenRouters = {},
+            onOpenAccess = {},
         )
     }
 }

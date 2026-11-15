@@ -8,6 +8,12 @@ ksp {
 }
 
 android {
+    sourceSets {
+        getByName("test") {
+            assets.srcDir("$projectDir/schemas")
+        }
+    }
+
     testOptions {
         unitTests {
             isIncludeAndroidResources = true

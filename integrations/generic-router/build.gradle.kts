@@ -7,4 +7,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:domain"))
     implementation(libs.kotlinx.coroutines.core)
+
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
 }

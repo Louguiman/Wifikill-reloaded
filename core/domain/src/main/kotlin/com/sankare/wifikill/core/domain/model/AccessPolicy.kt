@@ -34,6 +34,8 @@ data class AccessPolicyRequest(
     val action: AccessPolicyAction,
     val reason: String?,
     val expiresAt: Long?,
+    val targetMacAddress: String? = null,
+    val targetIpAddress: String? = null,
 )
 
 data class PolicyVerificationResult(

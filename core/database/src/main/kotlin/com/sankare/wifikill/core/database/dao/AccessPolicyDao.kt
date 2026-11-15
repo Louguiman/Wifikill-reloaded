@@ -21,6 +21,17 @@ interface AccessPolicyDao {
     @Query("UPDATE access_policies SET status = :status, updatedAt = :updatedAt WHERE id = :policyId")
     suspend fun updateStatus(policyId: String, status: String, updatedAt: Long)
 
+    @Query(
+        "UPDATE access_policies SET status = :status, routerPolicyReference = :reference, " +
+            "updatedAt = :updatedAt WHERE id = :policyId",
+    )
+    suspend fun updateStatusAndReference(
+        policyId: String,
+        status: String,
+        reference: String?,
+        updatedAt: Long,
+    )
+
     @Query("DELETE FROM access_policies WHERE id = :policyId")
     suspend fun delete(policyId: String)
 }

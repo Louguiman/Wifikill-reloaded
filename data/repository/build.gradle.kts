@@ -8,6 +8,7 @@ dependencies {
     implementation(project(":core:database"))
     implementation(project(":core:network"))
     implementation(project(":core:security"))
+    implementation(project(":integrations:router-api"))
     implementation(libs.kotlinx.coroutines.core)
     implementation(libs.kotlinx.coroutines.android)
 

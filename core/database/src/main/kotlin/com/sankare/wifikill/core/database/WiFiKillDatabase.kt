@@ -3,6 +3,7 @@ package com.sankare.wifikill.core.database
 import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.migration.Migration
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.sankare.wifikill.core.database.dao.AccessPolicyDao
 import com.sankare.wifikill.core.database.dao.AppSettingsDao
 import com.sankare.wifikill.core.database.dao.DeviceDao
@@ -37,7 +38,7 @@ import com.sankare.wifikill.core.database.entity.TrafficSampleEntity
         RouterCapabilityEntity::class,
         AppSettingsEntity::class,
     ],
-    version = 1,
+    version = 2,
     exportSchema = true,
 )
 abstract class WiFiKillDatabase : RoomDatabase() {
@@ -55,6 +56,17 @@ abstract class WiFiKillDatabase : RoomDatabase() {
     companion object {
         const val NAME = "wifikill.db"
 
-        val MIGRATIONS: Array<Migration> = emptyArray()
+        private val MIGRATION_1_2 = object : Migration(1, 2) {
+            override fun migrate(database: SupportSQLiteDatabase) {
+                database.execSQL(
+                    "ALTER TABLE routers ADD COLUMN port INTEGER NOT NULL DEFAULT 443",
+                )
+                database.execSQL(
+                    "ALTER TABLE routers ADD COLUMN protocol TEXT NOT NULL DEFAULT 'HTTPS'",
+                )
+            }
+        }
+
+        val MIGRATIONS: Array<Migration> = arrayOf(MIGRATION_1_2)
     }
 }
