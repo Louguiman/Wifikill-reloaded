@@ -69,11 +69,14 @@ Toolchain: JDK 17, Gradle 8.9 (wrapper), AGP 8.7.3, Kotlin 2.0.21, compileSdk/ta
 
 - `./gradlew test` — unit tests.
 - `./gradlew :app:assembleDebug` — debug APK.
+- `./gradlew :app:assembleRelease` — release APK; signed only when the `ANDROID_KEYSTORE_FILE`, `ANDROID_KEYSTORE_PASSWORD`, `ANDROID_KEY_ALIAS`, and `ANDROID_KEY_PASSWORD` env vars are set.
 - `./gradlew lint` — Android lint.
 - `./gradlew :module:testDebugUnitTest` — single Android module tests.
 
 Local SDK path is `local.properties` (gitignored); CI uses the runner SDK.
 
+CI builds debug APK artifacts for all branches except `prod`. Pushes to `prod` require the release keystore secrets and publish a signed APK to a GitHub Release; never commit the keystore or its passwords.
+
 ## Current state
 
-M1–M4 are implemented: Gradle multi-module graph, convention plugins, `core:common`, `core:domain` models/repositories/use-cases, design system, Hilt app shell, navigation, CI; Room persistence and local discovery with network context, permissions, engine, identity resolution, and device UI; the router foundation with `RouterAdapter` registry, generic HTTP(S) adapter, Keystore-backed credentials, and router management UI; and verified access with OpenWrt + MikroTik adapters, router-authorized policies that are `ACTIVE` only after read-back verification, and an access management UI. M5 (diagnostics & monitoring: E07, E13) is next.
+M1–M6 are implemented: Gradle multi-module graph, convention plugins, `core:common`, `core:domain` models/repositories/use-cases, design system, Hilt app shell, navigation, CI; Room persistence and local discovery with network context, permissions, engine, identity resolution, and device UI; the router foundation with `RouterAdapter` registry, generic HTTP(S) adapter, Keystore-backed credentials, and router management UI; verified access with OpenWrt + MikroTik adapters and router-authorized policies that are `ACTIVE` only after read-back verification; diagnostics/monitoring with distinct gateway, DNS, and internet probes, persisted diagnostic history, and source-aware local traffic samples with pause/stop behavior; and release-candidate productization with onboarding, settings, local data deletion, configurable retention plus startup/WorkManager cleanup, optional allowlisted root advanced diagnostics, sanitized error reporting, and en/fr resources for the new UI. Remaining before v1.0: hardware/firmware verification and release signing/prod branch protection.

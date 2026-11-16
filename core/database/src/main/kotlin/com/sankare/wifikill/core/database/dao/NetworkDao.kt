@@ -40,4 +40,7 @@ interface NetworkDao {
 
     @Query("UPDATE networks SET isCurrent = 1 WHERE id = :networkId")
     suspend fun setCurrent(networkId: String)
+
+    @Query("DELETE FROM networks")
+    suspend fun deleteAll()
 }

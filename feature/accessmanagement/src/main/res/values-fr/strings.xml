@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="access_back">Retour</string>
+    <string name="access_title">Accès</string>
+    <string name="access_routers">Routeurs</string>
+    <string name="access_policy_note">Les modifications de politique passent par l\'API authentifiée du routeur et sont confirmées par une relecture de l\'état du routeur.</string>
+    <string name="access_loading">Chargement de l\'état des accès…</string>
+    <string name="access_no_router_title">Aucun routeur autorisé</string>
+    <string name="access_no_router_message">Ajoutez un routeur que vous administrez avant de modifier les politiques d\'accès.</string>
+    <string name="access_router_label">Routeur</string>
+    <string name="access_device_label">Appareil</string>
+    <string name="access_no_devices">Aucun appareil découvert sur ce réseau.</string>
+    <string name="access_block_internet">Bloquer Internet</string>
+    <string name="access_allow_internet">Autoriser Internet</string>
+    <string name="access_reason">Motif (facultatif)</string>
+    <string name="access_applying">Vérification…</string>
+    <string name="access_block_and_verify">Bloquer et vérifier</string>
+    <string name="access_allow_and_verify">Autoriser et vérifier</string>
+    <string name="access_policies_title">Politiques sur ce routeur</string>
+    <string name="access_no_policies">Aucune politique</string>
+    <string name="access_no_policies_message">Les politiques d\'accès apparaissent ici une fois appliquées.</string>
+    <string name="access_unknown_device">Appareil inconnu</string>
+    <string name="access_device_fallback">Appareil %1$s</string>
+    <string name="access_action">Action : %1$s</string>
+    <string name="access_working">En cours…</string>
+    <string name="access_verify">Vérifier</string>
+    <string name="access_remove">Supprimer</string>
+    <string name="access_status_pending">En attente</string>
+    <string name="access_status_applying">Application</string>
+    <string name="access_status_active">Actif</string>
+    <string name="access_status_removing">Suppression</string>
+    <string name="access_status_removed">Supprimé</string>
+    <string name="access_status_failed">Échec</string>
+    <string name="access_status_unknown">Non vérifié</string>
+
+    <string name="access_vm_router_first">Ajoutez et connectez d’abord un routeur</string>
+    <string name="access_vm_select_device">Sélectionnez un appareil</string>
+    <string name="access_vm_policy_status">Politique %1$s après vérification</string>
+    <string name="access_vm_policy_removed">Politique supprimée après vérification</string>
+    <string name="access_vm_confirmed">Le routeur confirme l’état actuel de la politique</string>
+    <string name="access_vm_not_confirmed">Le routeur n’a pas confirmé l’état de la politique</string>
+    <string name="access_vm_error">Échec de l’action sur la politique d’accès</string>
+</resources>

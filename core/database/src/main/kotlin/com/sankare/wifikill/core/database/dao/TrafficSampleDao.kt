@@ -20,4 +20,7 @@ interface TrafficSampleDao {
 
     @Query("DELETE FROM traffic_samples WHERE sampledAt < :cutoff")
     suspend fun deleteOlderThan(cutoff: Long): Int
+
+    @Query("DELETE FROM traffic_samples")
+    suspend fun deleteAll()
 }

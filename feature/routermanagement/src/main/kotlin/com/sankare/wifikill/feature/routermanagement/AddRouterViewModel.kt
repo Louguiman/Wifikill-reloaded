@@ -3,6 +3,7 @@ package com.sankare.wifikill.feature.routermanagement
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sankare.wifikill.core.common.AppResult
+import com.sankare.wifikill.core.common.StringProvider
 import com.sankare.wifikill.core.domain.model.AddRouterRequest
 import com.sankare.wifikill.core.domain.model.NetworkContext
 import com.sankare.wifikill.core.domain.model.RouterAdapterType
@@ -40,6 +41,7 @@ data class AddRouterUiState(
 class AddRouterViewModel @Inject constructor(
     observeCurrentNetwork: ObserveCurrentNetworkUseCase,
     private val addRouter: AddRouterUseCase,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val form = MutableStateFlow(AddRouterForm())
@@ -79,13 +81,13 @@ class AddRouterViewModel @Inject constructor(
         if (status.value.isSaving) return
         val networkId = state.value.network?.networkId
         if (networkId == null) {
-            status.update { it.copy(error = "Connect to a network before adding a router") }
+            status.update { it.copy(error = strings.get(R.string.routers_vm_no_network)) }
             return
         }
         val current = form.value
         val port = current.port.toIntOrNull()
         if (port == null) {
-            status.update { it.copy(error = "Enter a valid port") }
+            status.update { it.copy(error = strings.get(R.string.routers_vm_invalid_port)) }
             return
         }
 
@@ -108,7 +110,7 @@ class AddRouterViewModel @Inject constructor(
                     is AppResult.Success -> it.copy(isSaving = false, isSaved = true)
                     is AppResult.Failure -> it.copy(
                         isSaving = false,
-                        error = result.error.message ?: result.error.code.name,
+                        error = result.error.message ?: strings.get(R.string.routers_vm_add_failed),
                     )
                 }
             }

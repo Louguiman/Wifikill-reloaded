@@ -58,4 +58,10 @@ interface RouterDao {
 
     @Query("DELETE FROM routers WHERE id = :routerId")
     suspend fun deleteById(routerId: String)
+
+    @Query("SELECT * FROM routers")
+    suspend fun getAll(): List<RouterEntity>
+
+    @Query("DELETE FROM routers")
+    suspend fun deleteAll()
 }

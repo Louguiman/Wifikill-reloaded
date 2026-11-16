@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Paramètres</string>
+    <string name="settings_back">Retour</string>
+    <string name="settings_loading">Chargement des paramètres…</string>
+    <string name="settings_saved">Paramètres enregistrés</string>
+    <string name="settings_dismiss">Fermer</string>
+
+    <string name="settings_root_title">Mode root</string>
+    <string name="settings_root_description">Root est facultatif. Lorsqu’il est activé, les diagnostics avancés peuvent exécuter un petit ensemble d’opérations fixes et autorisées. Aucune commande shell arbitraire n’est exposée.</string>
+    <string name="settings_root_checking">Vérification de l’accès root…</string>
+    <string name="settings_root_available">L’accès root est disponible.</string>
+    <string name="settings_root_unavailable">L’accès root n’est pas disponible sur cet appareil. Les fonctionnalités principales restent utilisables.</string>
+    <string name="settings_root_unavailable_error">L’accès root est indisponible. Le mode root n’a pas été activé.</string>
+
+    <string name="settings_monitoring_title">Surveillance</string>
+    <string name="settings_monitoring_description">Fréquence d’actualisation des compteurs de trafic locaux lorsque l’écran de surveillance est ouvert.</string>
+    <string name="settings_monitoring_interval">Intervalle d’actualisation</string>
+    <string name="settings_seconds">%1$d s</string>
+    <string name="settings_decrease">Diminuer</string>
+    <string name="settings_increase">Augmenter</string>
+
+    <string name="settings_retention_title">Conservation des données</string>
+    <string name="settings_retention_description">L’historique local ancien est supprimé automatiquement. Les profils d’appareils et de réseaux restent jusqu’à leur suppression manuelle.</string>
+    <string name="settings_retention_scan">Historique des analyses</string>
+    <string name="settings_retention_observations">Observations d’appareils</string>
+    <string name="settings_retention_traffic">Échantillons de trafic</string>
+    <string name="settings_retention_diagnostics">Résultats de diagnostic</string>
+    <string name="settings_retention_policy">Audit des politiques d’accès</string>
+    <string name="settings_days">%1$d jours</string>
+    <string name="settings_change">Modifier</string>
+
+    <string name="settings_delete_title">Données locales</string>
+    <string name="settings_delete_description">Supprimer de cet appareil les réseaux, appareils, historiques, diagnostics et identifiants de routeur enregistrés. Les paramètres de l’application sont conservés.</string>
+    <string name="settings_delete_action">Supprimer toutes les données locales</string>
+    <string name="settings_delete_confirm_title">Supprimer toutes les données locales ?</string>
+    <string name="settings_delete_confirm_message">Cela supprime les réseaux, appareils, historiques, diagnostics et identifiants de routeur enregistrés. Cette action est irréversible.</string>
+    <string name="settings_delete_confirm">Supprimer</string>
+    <string name="settings_cancel">Annuler</string>
+    <string name="settings_local_data_deleted">Données locales supprimées</string>
+
+    <string name="onboarding_title">WiFiKill Reloaded</string>
+    <string name="onboarding_subtitle">Visibilité du réseau et gestion des accès autorisée par le routeur pour les réseaux que vous administrez.</string>
+    <string name="onboarding_local_title">Local par conception</string>
+    <string name="onboarding_local_body">La découverte, les diagnostics, l’historique et les paramètres fonctionnent sans compte, serveur ni connexion Internet.</string>
+    <string name="onboarding_permissions_title">Autorisations</string>
+    <string name="onboarding_permissions_body">Les détails Wi-Fi et la découverte du réseau local nécessitent l’autorisation de localisation ou Wi-Fi à proximité sur Android. L’application ne téléverse jamais vos données réseau.</string>
+    <string name="onboarding_root_title">Root est facultatif</string>
+    <string name="onboarding_root_body">Les fonctionnalités principales ne nécessitent jamais root. Vous pouvez l’activer plus tard dans les paramètres pour un ensemble restreint de diagnostics avancés.</string>
+    <string name="onboarding_permissions_granted">Autorisations accordées</string>
+    <string name="onboarding_permissions_denied">Autorisations non accordées. Certaines fonctionnalités restent utilisables et vous pourrez les accorder plus tard.</string>
+    <string name="onboarding_grant">Accorder les autorisations</string>
+    <string name="onboarding_continue">Continuer</string>
+    <string name="onboarding_continue_without">Continuer sans autorisations</string>
+    <string name="onboarding_error">Impossible d’enregistrer l’état de l’introduction</string>
+</resources>

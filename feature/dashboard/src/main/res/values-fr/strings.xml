@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="dashboard_title">WiFiKill Reloaded</string>
+    <string name="dashboard_subtitle">Visibilité réseau. Intelligence des appareils. Gestion des accès.</string>
+    <string name="dashboard_discover">Lancer la découverte du réseau</string>
+    <string name="dashboard_scan_again">Relancer l\'analyse</string>
+    <string name="dashboard_view_devices">Voir les appareils (%1$d)</string>
+    <string name="dashboard_manage_routers">Gérer les routeurs</string>
+    <string name="dashboard_access_policies">Politiques d\'accès</string>
+    <string name="dashboard_monitoring">Surveillance</string>
+    <string name="dashboard_diagnostics">Diagnostics</string>
+    <string name="dashboard_settings">Paramètres</string>
+    <string name="dashboard_empty_title">Aucun réseau autorisé détecté</string>
+    <string name="dashboard_empty_message">Connectez-vous au réseau Wi-Fi ou Ethernet que vous administrez, puis lancez l\'analyse.</string>
+    <string name="dashboard_current_network">Réseau actuel</string>
+    <string name="dashboard_network_summary">%1$s • %2$s</string>
+    <string name="dashboard_subnet_unknown">sous-réseau inconnu</string>
+    <string name="dashboard_gateway">Passerelle %1$s</string>
+    <string name="dashboard_unknown">inconnu</string>
+    <string name="dashboard_device_count">Appareils découverts : %1$d</string>
+    <string name="dashboard_metered">Connexion limitée</string>
+    <string name="dashboard_not_connected">Non connecté à un réseau administrable</string>
+    <string name="dashboard_no_network">Aucun réseau</string>
+    <string name="dashboard_network_at">Réseau sur %1$s</string>
+    <string name="dashboard_unknown_network">Réseau inconnu</string>
+    <string name="network_type_wifi">Wi-Fi</string>
+    <string name="network_type_ethernet">Ethernet</string>
+    <string name="network_type_cellular">Cellulaire</string>
+    <string name="network_type_other">Autre</string>
+    <string name="network_type_unknown">Inconnu</string>
+</resources>

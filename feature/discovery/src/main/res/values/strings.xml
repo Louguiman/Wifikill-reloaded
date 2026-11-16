@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="discovery_back">Back</string>
+    <string name="discovery_title">Network discovery</string>
+    <string name="discovery_dismiss">Dismiss</string>
+    <string name="discovery_cancel_scan">Cancel scan</string>
+    <string name="discovery_scan_network">Scan network</string>
+    <string name="discovery_devices">Devices (%1$d)</string>
+    <string name="discovery_discovering">Discovering devices</string>
+    <string name="discovery_no_devices">No devices found yet</string>
+    <string name="discovery_probing">Probing the local subnet. Results appear as hosts respond.</string>
+    <string name="discovery_run_scan">Run a scan to discover devices on your authorized network.</string>
+    <string name="discovery_no_network">No network</string>
+    <string name="discovery_network_summary">Subnet %1$s • Gateway %2$s</string>
+    <string name="discovery_unknown">unknown</string>
+    <string name="discovery_device_summary">%1$s • confidence %2$s</string>
+    <string name="discovery_device_trusted">%1$s • trusted</string>
+    <string name="discovery_unknown_device">Unknown device</string>
+
+    <string name="discovery_vm_starting">Starting scan…</string>
+    <string name="discovery_vm_scanning_network">Scanning network…</string>
+    <string name="discovery_vm_scanning_source">Scanning %1$s…</string>
+    <string name="discovery_vm_source_completed">%1$s: %2$d found</string>
+    <string name="discovery_vm_found">%1$d devices found</string>
+    <string name="discovery_vm_complete">Scan complete: %1$d devices found</string>
+    <string name="discovery_source_android">Android network</string>
+    <string name="discovery_source_local">Local discovery</string>
+    <string name="discovery_source_router">Router inventory</string>
+    <string name="discovery_source_manual">Manual entry</string>
+</resources>

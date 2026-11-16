@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="settings_title">Settings</string>
+    <string name="settings_back">Back</string>
+    <string name="settings_loading">Loading settings…</string>
+    <string name="settings_saved">Settings saved</string>
+    <string name="settings_dismiss">Dismiss</string>
+
+    <string name="settings_root_title">Root mode</string>
+    <string name="settings_root_description">Root is optional. When enabled, advanced diagnostics can run a small set of fixed, allowlisted operations. No arbitrary shell commands are exposed.</string>
+    <string name="settings_root_checking">Checking root access…</string>
+    <string name="settings_root_available">Root access is available.</string>
+    <string name="settings_root_unavailable">Root access is not available on this device. Core features continue to work without it.</string>
+    <string name="settings_root_unavailable_error">Root access is unavailable. Root mode was not enabled.</string>
+
+    <string name="settings_monitoring_title">Monitoring</string>
+    <string name="settings_monitoring_description">How often local traffic counters refresh while the monitoring screen is open.</string>
+    <string name="settings_monitoring_interval">Refresh interval</string>
+    <string name="settings_seconds">%1$d s</string>
+    <string name="settings_decrease">Decrease</string>
+    <string name="settings_increase">Increase</string>
+
+    <string name="settings_retention_title">Data retention</string>
+    <string name="settings_retention_description">Older local history is removed automatically. Device and network profiles remain until you delete them.</string>
+    <string name="settings_retention_scan">Scan history</string>
+    <string name="settings_retention_observations">Device observations</string>
+    <string name="settings_retention_traffic">Traffic samples</string>
+    <string name="settings_retention_diagnostics">Diagnostic results</string>
+    <string name="settings_retention_policy">Access-policy audit</string>
+    <string name="settings_days">%1$d days</string>
+    <string name="settings_change">Change</string>
+
+    <string name="settings_delete_title">Local data</string>
+    <string name="settings_delete_description">Delete stored networks, devices, history, diagnostics, and router credentials from this device. App settings are kept.</string>
+    <string name="settings_delete_action">Delete all local data</string>
+    <string name="settings_delete_confirm_title">Delete all local data?</string>
+    <string name="settings_delete_confirm_message">This removes saved networks, devices, history, diagnostics, and router credentials. This cannot be undone.</string>
+    <string name="settings_delete_confirm">Delete</string>
+    <string name="settings_cancel">Cancel</string>
+    <string name="settings_local_data_deleted">Local data deleted</string>
+
+    <string name="onboarding_title">WiFiKill Reloaded</string>
+    <string name="onboarding_subtitle">Network visibility and router-authorized access management for networks you administer.</string>
+    <string name="onboarding_local_title">Local-first by design</string>
+    <string name="onboarding_local_body">Discovery, diagnostics, history, and settings work without an account, backend, or internet connection.</string>
+    <string name="onboarding_permissions_title">Permissions</string>
+    <string name="onboarding_permissions_body">Wi-Fi details and local network discovery need location or nearby Wi-Fi permission on Android. The app never uploads your network data.</string>
+    <string name="onboarding_root_title">Root is optional</string>
+    <string name="onboarding_root_body">Core features never require root. You can opt in later from Settings to enable a restricted set of advanced diagnostics.</string>
+    <string name="onboarding_permissions_granted">Permissions granted</string>
+    <string name="onboarding_permissions_denied">Permissions not granted. You can still use some features and grant access later.</string>
+    <string name="onboarding_grant">Grant permissions</string>
+    <string name="onboarding_continue">Continue</string>
+    <string name="onboarding_continue_without">Continue without permissions</string>
+    <string name="onboarding_error">Unable to save onboarding state</string>
+</resources>

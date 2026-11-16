@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="devices_back">Back</string>
+    <string name="devices_title">Devices</string>
+    <string name="devices_no_network">No authorized network</string>
+    <string name="devices_empty_title">No devices yet</string>
+    <string name="devices_empty_message">Run a network discovery scan to populate this list.</string>
+    <string name="devices_unknown_device">Unknown device</string>
+    <string name="devices_summary">%1$s • confidence %2$s</string>
+    <string name="devices_summary_trusted">%1$s • trusted</string>
+    <string name="device_detail_title">Device details</string>
+    <string name="device_detail_loading">Loading device…</string>
+    <string name="device_detail_not_found">Device not found</string>
+    <string name="device_detail_not_found_message">This device is no longer in the local database.</string>
+    <string name="device_detail_dismiss">Dismiss</string>
+    <string name="device_detail_trusted">Trusted device</string>
+    <string name="device_detail_trusted_note">Trust is a local label. It does not change router policy.</string>
+    <string name="device_detail_rename">Rename device</string>
+    <string name="device_detail_history">Observation history (%1$d)</string>
+    <string name="device_detail_no_observations">No observations</string>
+    <string name="device_detail_no_observations_message">Device history appears after a successful scan.</string>
+    <string name="device_detail_hostname">Hostname: %1$s</string>
+    <string name="device_detail_manufacturer">Manufacturer: %1$s</string>
+    <string name="device_detail_notes">Notes: %1$s</string>
+    <string name="device_detail_ip_unknown">IP unknown</string>
+    <string name="device_detail_mac">MAC %1$s</string>
+    <string name="device_detail_unknown">unknown</string>
+    <string name="device_detail_observation_summary">%1$s • %2$s • %3$s</string>
+    <string name="device_detail_display_name">Display name</string>
+    <string name="device_detail_save">Save</string>
+    <string name="device_detail_cancel">Cancel</string>
+
+    <string name="devices_vm_error">Could not update device</string>
+</resources>

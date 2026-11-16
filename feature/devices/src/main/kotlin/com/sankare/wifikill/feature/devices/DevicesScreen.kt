@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -42,10 +43,10 @@ fun DevicesScreen(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack) {
-                Text("Back")
+                Text(stringResource(R.string.devices_back))
             }
             Text(
-                text = "Devices",
+                text = stringResource(R.string.devices_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(start = 8.dp),
             )
@@ -54,15 +55,15 @@ fun DevicesScreen(
         Text(
             text = state.network?.ssid
                 ?: state.network?.interfaceName
-                ?: "No authorized network",
+                ?: stringResource(R.string.devices_no_network),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
 
         if (state.devices.isEmpty()) {
             EmptyState(
-                title = "No devices yet",
-                message = "Run a network discovery scan to populate this list.",
+                title = stringResource(R.string.devices_empty_title),
+                message = stringResource(R.string.devices_empty_message),
                 modifier = Modifier.fillMaxWidth(),
             )
         } else {
@@ -91,12 +92,21 @@ private fun DeviceListItem(device: Device, onClick: () -> Unit) {
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
-                text = device.customName ?: device.hostname ?: "Unknown device",
+                text = device.customName ?: device.hostname
+                    ?: stringResource(R.string.devices_unknown_device),
                 style = MaterialTheme.typography.titleSmall,
             )
+            val summary = stringResource(
+                R.string.devices_summary,
+                device.deviceType.name,
+                device.identityConfidence.name,
+            )
             Text(
-                text = "${device.deviceType.name} • confidence ${device.identityConfidence.name}" +
-                    if (device.isTrusted) " • trusted" else "",
+                text = if (device.isTrusted) {
+                    stringResource(R.string.devices_summary_trusted, summary)
+                } else {
+                    summary
+                },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="routers_back">Retour</string>
+    <string name="routers_title">Routeurs</string>
+    <string name="routers_add">Ajouter</string>
+    <string name="routers_no_network">Aucun réseau autorisé</string>
+    <string name="routers_loading">Chargement des routeurs…</string>
+    <string name="routers_empty_title">Aucun routeur pour l\'instant</string>
+    <string name="routers_empty_message">Ajoutez un routeur que vous êtes autorisé à administrer.</string>
+    <string name="routers_status_unknown">Inconnu</string>
+    <string name="routers_status_connecting">Connexion</string>
+    <string name="routers_status_connected">Connecté</string>
+    <string name="routers_status_auth_failed">Échec de l\'authentification</string>
+    <string name="routers_status_unreachable">Injoignable</string>
+    <string name="routers_status_disconnected">Déconnecté</string>
+    <string name="routers_summary">%1$s:%2$d • %3$s • %4$s</string>
+    <string name="routers_no_capabilities">Aucune capacité vérifiée</string>
+    <string name="routers_verified_capabilities">Vérifié : %1$s</string>
+    <string name="routers_working">En cours…</string>
+    <string name="routers_disconnect">Déconnecter</string>
+    <string name="routers_connect">Connecter</string>
+    <string name="routers_forget">Oublier</string>
+    <string name="routers_add_title">Ajouter un routeur</string>
+    <string name="routers_name">Nom</string>
+    <string name="routers_host">Hôte ou IP</string>
+    <string name="routers_port">Port</string>
+    <string name="routers_protocol_https">HTTPS</string>
+    <string name="routers_protocol_http">HTTP</string>
+    <string name="routers_protocol_api">API routeur</string>
+    <string name="routers_protocol_unknown">Inconnu</string>
+    <string name="routers_username">Nom d\'utilisateur</string>
+    <string name="routers_password">Mot de passe</string>
+    <string name="routers_saving">Enregistrement…</string>
+    <string name="routers_save_connect">Enregistrer et connecter</string>
+
+    <string name="routers_vm_connected">Connecté à %1$s</string>
+    <string name="routers_vm_disconnected">Déconnecté</string>
+    <string name="routers_vm_removed">Routeur supprimé</string>
+    <string name="routers_vm_error">Échec de l’action sur le routeur</string>
+    <string name="routers_vm_no_network">Connectez-vous à un réseau avant d’ajouter un routeur</string>
+    <string name="routers_vm_invalid_port">Saisissez un port valide</string>
+    <string name="routers_vm_add_failed">Impossible d’enregistrer le routeur</string>
+</resources>

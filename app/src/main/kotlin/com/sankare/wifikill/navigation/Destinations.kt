@@ -1,6 +1,7 @@
 package com.sankare.wifikill.navigation
 
 object Destinations {
+    const val ONBOARDING = "onboarding"
     const val DASHBOARD = "dashboard"
     const val DISCOVERY = "discovery"
     const val DEVICES = "devices"

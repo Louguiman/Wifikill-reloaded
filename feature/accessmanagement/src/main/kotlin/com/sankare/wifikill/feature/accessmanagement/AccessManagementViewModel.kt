@@ -3,9 +3,11 @@ package com.sankare.wifikill.feature.accessmanagement
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sankare.wifikill.core.common.AppResult
+import com.sankare.wifikill.core.common.StringProvider
 import com.sankare.wifikill.core.domain.model.AccessPolicy
 import com.sankare.wifikill.core.domain.model.AccessPolicyAction
 import com.sankare.wifikill.core.domain.model.AccessPolicyRequest
+import com.sankare.wifikill.core.domain.model.AccessPolicyStatus
 import com.sankare.wifikill.core.domain.model.Device
 import com.sankare.wifikill.core.domain.model.NetworkContext
 import com.sankare.wifikill.core.domain.model.Router
@@ -82,6 +84,7 @@ class AccessManagementViewModel @Inject constructor(
     private val applyPolicy: ApplyAccessPolicyUseCase,
     private val removePolicy: RemoveAccessPolicyUseCase,
     private val verifyPolicy: VerifyAccessPolicyUseCase,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val selection = MutableStateFlow(Selection())
@@ -163,11 +166,11 @@ class AccessManagementViewModel @Inject constructor(
         val routerId = current.selectedRouterId
         val deviceId = current.selectedDeviceId
         if (routerId == null) {
-            actions.update { it.copy(error = "Add and connect a router first") }
+            actions.update { it.copy(error = strings.get(R.string.access_vm_router_first)) }
             return
         }
         if (deviceId == null) {
-            actions.update { it.copy(error = "Select a device") }
+            actions.update { it.copy(error = strings.get(R.string.access_vm_select_device)) }
             return
         }
         viewModelScope.launch {
@@ -185,12 +188,15 @@ class AccessManagementViewModel @Inject constructor(
                 when (result) {
                     is AppResult.Success -> it.copy(
                         isApplying = false,
-                        message = "Policy ${result.data.status.name.lowercase()} after verification",
+                        message = strings.get(
+                            R.string.access_vm_policy_status,
+                            strings.get(result.data.status.statusRes()),
+                        ),
                     )
 
                     is AppResult.Failure -> it.copy(
                         isApplying = false,
-                        error = result.error.message ?: result.error.code.name,
+                        error = result.error.message ?: strings.get(R.string.access_vm_error),
                     )
                 }
             }
@@ -200,7 +206,7 @@ class AccessManagementViewModel @Inject constructor(
     fun remove(policyId: String) {
         launchPolicyAction(policyId) {
             when (val result = removePolicy(policyId)) {
-                is AppResult.Success -> AppResult.Success("Policy removed after verification")
+                is AppResult.Success -> AppResult.Success(strings.get(R.string.access_vm_policy_removed))
                 is AppResult.Failure -> result
             }
         }
@@ -211,9 +217,9 @@ class AccessManagementViewModel @Inject constructor(
             when (val result = verifyPolicy(policyId)) {
                 is AppResult.Success -> AppResult.Success(
                     if (result.data.isVerified) {
-                        "Router confirms the current policy state"
+                        strings.get(R.string.access_vm_confirmed)
                     } else {
-                        "Router did not confirm the policy state"
+                        strings.get(R.string.access_vm_not_confirmed)
                     },
                 )
 
@@ -242,11 +248,21 @@ class AccessManagementViewModel @Inject constructor(
                 is AppResult.Failure -> actions.update {
                     it.copy(
                         busyPolicyId = null,
-                        error = result.error.message ?: result.error.code.name,
+                        error = result.error.message ?: strings.get(R.string.access_vm_error),
                     )
                 }
             }
         }
+    }
+
+    private fun AccessPolicyStatus.statusRes(): Int = when (this) {
+        AccessPolicyStatus.PENDING -> R.string.access_status_pending
+        AccessPolicyStatus.APPLYING -> R.string.access_status_applying
+        AccessPolicyStatus.ACTIVE -> R.string.access_status_active
+        AccessPolicyStatus.REMOVING -> R.string.access_status_removing
+        AccessPolicyStatus.REMOVED -> R.string.access_status_removed
+        AccessPolicyStatus.FAILED -> R.string.access_status_failed
+        AccessPolicyStatus.UNKNOWN -> R.string.access_status_unknown
     }
 
     private companion object {

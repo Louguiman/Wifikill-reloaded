@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_back">Back</string>
+    <string name="monitoring_title">Monitoring</string>
+    <string name="monitoring_note">These are Android device interface totals from this device only. They are not per-client bandwidth measurements and may include traffic from other device interfaces.</string>
+    <string name="monitoring_loading">Loading monitoring state…</string>
+    <string name="monitoring_no_network">No authorized network</string>
+    <string name="monitoring_no_network_message">Connect to a Wi-Fi or Ethernet network to monitor local traffic.</string>
+    <string name="monitoring_dismiss">Dismiss</string>
+    <string name="monitoring_pause">Pause</string>
+    <string name="monitoring_start">Start</string>
+    <string name="monitoring_refreshing">Refreshing…</string>
+    <string name="monitoring_refresh_now">Refresh now</string>
+    <string name="monitoring_live">Live · every %1$ds</string>
+    <string name="monitoring_paused">Paused</string>
+    <string name="monitoring_recent_samples">Recent samples</string>
+    <string name="monitoring_no_samples">No samples yet</string>
+    <string name="monitoring_no_samples_message">Start monitoring or refresh to capture a local traffic sample.</string>
+    <string name="monitoring_latest_sample">Latest local sample</string>
+    <string name="monitoring_reading">Reading…</string>
+    <string name="monitoring_no_measurement">No measurement available yet.</string>
+    <string name="monitoring_received">Received: %1$s</string>
+    <string name="monitoring_sent">Sent: %1$s</string>
+    <string name="monitoring_source">Source: %1$s</string>
+    <string name="monitoring_sampled">Sampled %1$s</string>
+    <string name="monitoring_sample_summary">Received %1$s · Sent %2$s</string>
+    <string name="monitoring_unavailable">unavailable</string>
+    <string name="monitoring_no_network_name">No network</string>
+    <string name="monitoring_network_at">Network at %1$s</string>
+    <string name="monitoring_unknown_network">Unknown network</string>
+    <string name="monitoring_source_router">Router telemetry</string>
+    <string name="monitoring_source_android">Android local device total</string>
+    <string name="monitoring_source_unknown">Unknown source</string>
+
+    <string name="monitoring_vm_unavailable">Traffic statistics are unavailable on this device</string>
+    <string name="monitoring_vm_error">Could not update traffic statistics</string>
+</resources>

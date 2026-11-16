@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="routers_back">Back</string>
+    <string name="routers_title">Routers</string>
+    <string name="routers_add">Add</string>
+    <string name="routers_no_network">No authorized network</string>
+    <string name="routers_loading">Loading routers…</string>
+    <string name="routers_empty_title">No routers yet</string>
+    <string name="routers_empty_message">Add a router you are authorized to administer.</string>
+    <string name="routers_status_unknown">Unknown</string>
+    <string name="routers_status_connecting">Connecting</string>
+    <string name="routers_status_connected">Connected</string>
+    <string name="routers_status_auth_failed">Authentication failed</string>
+    <string name="routers_status_unreachable">Unreachable</string>
+    <string name="routers_status_disconnected">Disconnected</string>
+    <string name="routers_summary">%1$s:%2$d • %3$s • %4$s</string>
+    <string name="routers_no_capabilities">No verified capabilities</string>
+    <string name="routers_verified_capabilities">Verified: %1$s</string>
+    <string name="routers_working">Working…</string>
+    <string name="routers_disconnect">Disconnect</string>
+    <string name="routers_connect">Connect</string>
+    <string name="routers_forget">Forget</string>
+    <string name="routers_add_title">Add router</string>
+    <string name="routers_name">Name</string>
+    <string name="routers_host">Host or IP</string>
+    <string name="routers_port">Port</string>
+    <string name="routers_protocol_https">HTTPS</string>
+    <string name="routers_protocol_http">HTTP</string>
+    <string name="routers_protocol_api">Router API</string>
+    <string name="routers_protocol_unknown">Unknown</string>
+    <string name="routers_username">Username</string>
+    <string name="routers_password">Password</string>
+    <string name="routers_saving">Saving…</string>
+    <string name="routers_save_connect">Save and connect</string>
+
+    <string name="routers_vm_connected">Connected to %1$s</string>
+    <string name="routers_vm_disconnected">Disconnected</string>
+    <string name="routers_vm_removed">Router removed</string>
+    <string name="routers_vm_error">Router action failed</string>
+    <string name="routers_vm_no_network">Connect to a network before adding a router</string>
+    <string name="routers_vm_invalid_port">Enter a valid port</string>
+    <string name="routers_vm_add_failed">Could not save router</string>
+</resources>

@@ -24,6 +24,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -52,22 +53,21 @@ fun AccessManagementScreen(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack) {
-                Text("Back")
+                Text(stringResource(R.string.access_back))
             }
             Text(
-                text = "Access",
+                text = stringResource(R.string.access_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(start = 8.dp),
             )
             Spacer(modifier = Modifier.weight(1f))
             TextButton(onClick = onOpenRouters) {
-                Text("Routers")
+                Text(stringResource(R.string.access_routers))
             }
         }
 
         Text(
-            text = "Policy changes apply through the router's authenticated API and are " +
-                "confirmed by reading the router state back.",
+            text = stringResource(R.string.access_policy_note),
             style = MaterialTheme.typography.bodySmall,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -88,10 +88,10 @@ fun AccessManagementScreen(
         }
 
         when {
-            state.isLoading -> Text("Loading access state…")
+            state.isLoading -> Text(stringResource(R.string.access_loading))
             state.routers.isEmpty() -> EmptyState(
-                title = "No authorized router",
-                message = "Add a router you administer before changing access policies.",
+                title = stringResource(R.string.access_no_router_title),
+                message = stringResource(R.string.access_no_router_message),
                 modifier = Modifier.fillMaxWidth(),
             )
             else -> {
@@ -115,13 +115,13 @@ fun AccessManagementScreen(
                     onApply = viewModel::apply,
                 )
                 Text(
-                    text = "Policies on this router",
+                    text = stringResource(R.string.access_policies_title),
                     style = MaterialTheme.typography.titleSmall,
                 )
                 if (state.policies.isEmpty()) {
                     EmptyState(
-                        title = "No policies",
-                        message = "Access policies appear here once applied.",
+                        title = stringResource(R.string.access_no_policies),
+                        message = stringResource(R.string.access_no_policies_message),
                         modifier = Modifier.fillMaxWidth(),
                     )
                 } else {
@@ -153,7 +153,7 @@ private fun RouterSelection(
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(
-            text = "Router",
+            text = stringResource(R.string.access_router_label),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -177,13 +177,13 @@ private fun DeviceSelection(
 ) {
     Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
         Text(
-            text = "Device",
+            text = stringResource(R.string.access_device_label),
             style = MaterialTheme.typography.labelMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
         if (devices.isEmpty()) {
             Text(
-                text = "No discovered devices on this network.",
+                text = stringResource(R.string.access_no_devices),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -226,18 +226,18 @@ private fun PolicyComposer(
                 FilterChip(
                     selected = action == AccessPolicyAction.BLOCK_INTERNET,
                     onClick = { onAction(AccessPolicyAction.BLOCK_INTERNET) },
-                    label = { Text("Block internet") },
+                    label = { Text(stringResource(R.string.access_block_internet)) },
                 )
                 FilterChip(
                     selected = action == AccessPolicyAction.ALLOW_INTERNET,
                     onClick = { onAction(AccessPolicyAction.ALLOW_INTERNET) },
-                    label = { Text("Allow internet") },
+                    label = { Text(stringResource(R.string.access_allow_internet)) },
                 )
             }
             OutlinedTextField(
                 value = reason,
                 onValueChange = onReason,
-                label = { Text("Reason (optional)") },
+                label = { Text(stringResource(R.string.access_reason)) },
                 singleLine = true,
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -248,9 +248,11 @@ private fun PolicyComposer(
             ) {
                 Text(
                     when {
-                        isApplying -> "Verifying…"
-                        action == AccessPolicyAction.BLOCK_INTERNET -> "Block and verify"
-                        else -> "Allow and verify"
+                        isApplying -> stringResource(R.string.access_applying)
+                        action == AccessPolicyAction.BLOCK_INTERNET ->
+                            stringResource(R.string.access_block_and_verify)
+
+                        else -> stringResource(R.string.access_allow_and_verify)
                     },
                 )
             }
@@ -279,7 +281,8 @@ private fun PolicyCard(
         ) {
             Row(verticalAlignment = Alignment.CenterVertically) {
                 Text(
-                    text = device?.displayName() ?: "Unknown device",
+                    text = device?.displayName()
+                        ?: stringResource(R.string.access_unknown_device),
                     style = MaterialTheme.typography.titleSmall,
                 )
                 Spacer(modifier = Modifier.weight(1f))
@@ -290,7 +293,7 @@ private fun PolicyCard(
                 )
             }
             Text(
-                text = "Action: ${policy.action.label()}",
+                text = stringResource(R.string.access_action, policy.action.label()),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -303,10 +306,17 @@ private fun PolicyCard(
             ) {
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (busy) {
-                        Text("Working…", style = MaterialTheme.typography.bodySmall)
+                        Text(
+                            stringResource(R.string.access_working),
+                            style = MaterialTheme.typography.bodySmall,
+                        )
                     } else {
-                        OutlinedButton(onClick = onVerify) { Text("Verify") }
-                        OutlinedButton(onClick = onRemove) { Text("Remove") }
+                        OutlinedButton(onClick = onVerify) {
+                            Text(stringResource(R.string.access_verify))
+                        }
+                        OutlinedButton(onClick = onRemove) {
+                            Text(stringResource(R.string.access_remove))
+                        }
                     }
                 }
             }
@@ -314,24 +324,31 @@ private fun PolicyCard(
     }
 }
 
+@Composable
 private fun Device.displayName(): String = customName?.takeIf { it.isNotBlank() }
     ?: hostname?.takeIf { it.isNotBlank() }
-    ?: "Device ${id.take(8)}"
+    ?: stringResource(R.string.access_device_fallback, id.take(8))
 
-private fun AccessPolicyAction.label(): String = when (this) {
-    AccessPolicyAction.BLOCK_INTERNET -> "Block internet"
-    AccessPolicyAction.ALLOW_INTERNET -> "Allow internet"
-}
+@Composable
+private fun AccessPolicyAction.label(): String = stringResource(
+    when (this) {
+        AccessPolicyAction.BLOCK_INTERNET -> R.string.access_block_internet
+        AccessPolicyAction.ALLOW_INTERNET -> R.string.access_allow_internet
+    },
+)
 
-private fun AccessPolicyStatus.label(): String = when (this) {
-    AccessPolicyStatus.PENDING -> "Pending"
-    AccessPolicyStatus.APPLYING -> "Applying"
-    AccessPolicyStatus.ACTIVE -> "Active"
-    AccessPolicyStatus.REMOVING -> "Removing"
-    AccessPolicyStatus.REMOVED -> "Removed"
-    AccessPolicyStatus.FAILED -> "Failed"
-    AccessPolicyStatus.UNKNOWN -> "Unverified"
-}
+@Composable
+private fun AccessPolicyStatus.label(): String = stringResource(
+    when (this) {
+        AccessPolicyStatus.PENDING -> R.string.access_status_pending
+        AccessPolicyStatus.APPLYING -> R.string.access_status_applying
+        AccessPolicyStatus.ACTIVE -> R.string.access_status_active
+        AccessPolicyStatus.REMOVING -> R.string.access_status_removing
+        AccessPolicyStatus.REMOVED -> R.string.access_status_removed
+        AccessPolicyStatus.FAILED -> R.string.access_status_failed
+        AccessPolicyStatus.UNKNOWN -> R.string.access_status_unknown
+    },
+)
 
 @Composable
 private fun statusColor(status: AccessPolicyStatus) = when (status) {

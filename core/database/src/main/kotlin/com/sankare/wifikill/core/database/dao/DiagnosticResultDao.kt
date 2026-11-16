@@ -17,4 +17,7 @@ interface DiagnosticResultDao {
 
     @Query("DELETE FROM diagnostic_results WHERE executedAt < :cutoff")
     suspend fun deleteOlderThan(cutoff: Long): Int
+
+    @Query("DELETE FROM diagnostic_results")
+    suspend fun deleteAll()
 }

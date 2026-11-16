@@ -1,6 +1,7 @@
 package com.sankare.wifikill.feature.accessmanagement
 
 import com.sankare.wifikill.core.common.AppResult
+import com.sankare.wifikill.core.common.StringProvider
 import com.sankare.wifikill.core.domain.model.AccessPolicy
 import com.sankare.wifikill.core.domain.model.AccessPolicyAction
 import com.sankare.wifikill.core.domain.model.AccessPolicyStatus
@@ -47,6 +48,7 @@ class AccessManagementViewModelTest {
     private val applyPolicy = mockk<ApplyAccessPolicyUseCase>()
     private val removePolicy = mockk<RemoveAccessPolicyUseCase>()
     private val verifyPolicy = mockk<VerifyAccessPolicyUseCase>()
+    private val strings = StringProvider { id, _ -> "resource:$id" }
 
     private val viewModel by lazy {
         AccessManagementViewModel(
@@ -57,6 +59,7 @@ class AccessManagementViewModelTest {
             applyPolicy = applyPolicy,
             removePolicy = removePolicy,
             verifyPolicy = verifyPolicy,
+            strings = strings,
         )
     }
 

@@ -33,4 +33,7 @@ interface DeviceObservationDao {
 
     @Query("DELETE FROM device_observations WHERE observedAt < :cutoff")
     suspend fun deleteOlderThan(cutoff: Long): Int
+
+    @Query("DELETE FROM device_observations")
+    suspend fun deleteAll()
 }

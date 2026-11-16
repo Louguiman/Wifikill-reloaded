@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="discovery_back">Retour</string>
+    <string name="discovery_title">Découverte du réseau</string>
+    <string name="discovery_dismiss">Fermer</string>
+    <string name="discovery_cancel_scan">Annuler l\'analyse</string>
+    <string name="discovery_scan_network">Analyser le réseau</string>
+    <string name="discovery_devices">Appareils (%1$d)</string>
+    <string name="discovery_discovering">Découverte des appareils</string>
+    <string name="discovery_no_devices">Aucun appareil trouvé pour l\'instant</string>
+    <string name="discovery_probing">Analyse du sous-réseau local. Les résultats apparaissent à mesure que les hôtes répondent.</string>
+    <string name="discovery_run_scan">Lancez une analyse pour découvrir les appareils de votre réseau autorisé.</string>
+    <string name="discovery_no_network">Aucun réseau</string>
+    <string name="discovery_network_summary">Sous-réseau %1$s • Passerelle %2$s</string>
+    <string name="discovery_unknown">inconnu</string>
+    <string name="discovery_device_summary">%1$s • confiance %2$s</string>
+    <string name="discovery_device_trusted">%1$s • approuvé</string>
+    <string name="discovery_unknown_device">Appareil inconnu</string>
+
+    <string name="discovery_vm_starting">Démarrage de l\'analyse…</string>
+    <string name="discovery_vm_scanning_network">Analyse du réseau…</string>
+    <string name="discovery_vm_scanning_source">Analyse de %1$s…</string>
+    <string name="discovery_vm_source_completed">%1$s : %2$d trouvé(s)</string>
+    <string name="discovery_vm_found">%1$d appareils trouvés</string>
+    <string name="discovery_vm_complete">Analyse terminée : %1$d appareils trouvés</string>
+    <string name="discovery_source_android">Réseau Android</string>
+    <string name="discovery_source_local">Découverte locale</string>
+    <string name="discovery_source_router">Inventaire du routeur</string>
+    <string name="discovery_source_manual">Saisie manuelle</string>
+</resources>

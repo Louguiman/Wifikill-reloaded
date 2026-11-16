@@ -26,6 +26,7 @@ import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -74,10 +75,10 @@ private fun DeviceDetailContent(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack) {
-                Text("Back")
+                Text(stringResource(R.string.devices_back))
             }
             Text(
-                text = "Device details",
+                text = stringResource(R.string.device_detail_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(start = 8.dp),
             )
@@ -85,11 +86,13 @@ private fun DeviceDetailContent(
 
         val device = state.device
         when {
-            device == null && state.isLoading -> Text("Loading device…")
+            device == null && state.isLoading -> {
+                Text(stringResource(R.string.device_detail_loading))
+            }
 
             device == null -> EmptyState(
-                title = "Device not found",
-                message = "This device is no longer in the local database.",
+                title = stringResource(R.string.device_detail_not_found),
+                message = stringResource(R.string.device_detail_not_found_message),
                 modifier = Modifier.fillMaxWidth(),
             )
 
@@ -115,7 +118,7 @@ private fun DeviceDetailContent(
                                 modifier = Modifier.weight(1f),
                             )
                             TextButton(onClick = onDismissError) {
-                                Text("Dismiss")
+                                Text(stringResource(R.string.device_detail_dismiss))
                             }
                         }
                     }
@@ -128,11 +131,11 @@ private fun DeviceDetailContent(
                 ) {
                     Column {
                         Text(
-                            text = "Trusted device",
+                            text = stringResource(R.string.device_detail_trusted),
                             style = MaterialTheme.typography.bodyLarge,
                         )
                         Text(
-                            text = "Trust is a local label. It does not change router policy.",
+                            text = stringResource(R.string.device_detail_trusted_note),
                             style = MaterialTheme.typography.bodySmall,
                             color = MaterialTheme.colorScheme.onSurfaceVariant,
                         )
@@ -147,19 +150,21 @@ private fun DeviceDetailContent(
                     onClick = { showRenameDialog = true },
                     modifier = Modifier.fillMaxWidth(),
                 ) {
-                    Text("Rename device")
+                    Text(stringResource(R.string.device_detail_rename))
                 }
 
                 Text(
-                    text = "Observation history (${state.history.size})",
+                    text = stringResource(R.string.device_detail_history, state.history.size),
                     style = MaterialTheme.typography.titleMedium,
                     modifier = Modifier.padding(top = 8.dp),
                 )
 
                 if (state.history.isEmpty()) {
                     EmptyState(
-                        title = "No observations",
-                        message = "Device history appears after a successful scan.",
+                        title = stringResource(R.string.device_detail_no_observations),
+                        message = stringResource(
+                            R.string.device_detail_no_observations_message,
+                        ),
                         modifier = Modifier.fillMaxWidth(),
                     )
                 } else {
@@ -199,22 +204,36 @@ private fun DeviceHeader(device: Device) {
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(
-                text = device.customName ?: device.hostname ?: "Unknown device",
+                text = device.customName ?: device.hostname
+                    ?: stringResource(R.string.devices_unknown_device),
                 style = MaterialTheme.typography.titleLarge,
             )
             Text(
-                text = "${device.deviceType.name} • confidence ${device.identityConfidence.name}",
+                text = stringResource(
+                    R.string.devices_summary,
+                    device.deviceType.name,
+                    device.identityConfidence.name,
+                ),
                 style = MaterialTheme.typography.bodyMedium,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             device.hostname?.let {
-                Text("Hostname: $it", style = MaterialTheme.typography.bodySmall)
+                Text(
+                    stringResource(R.string.device_detail_hostname, it),
+                    style = MaterialTheme.typography.bodySmall,
+                )
             }
             device.manufacturer?.let {
-                Text("Manufacturer: $it", style = MaterialTheme.typography.bodySmall)
+                Text(
+                    stringResource(R.string.device_detail_manufacturer, it),
+                    style = MaterialTheme.typography.bodySmall,
+                )
             }
             device.notes?.let {
-                Text("Notes: $it", style = MaterialTheme.typography.bodySmall)
+                Text(
+                    stringResource(R.string.device_detail_notes, it),
+                    style = MaterialTheme.typography.bodySmall,
+                )
             }
         }
     }
@@ -231,17 +250,25 @@ private fun ObservationRow(observation: DeviceObservation) {
     ) {
         Column(modifier = Modifier.padding(12.dp), verticalArrangement = Arrangement.spacedBy(2.dp)) {
             Text(
-                text = observation.ipAddress ?: "IP unknown",
+                text = observation.ipAddress
+                    ?: stringResource(R.string.device_detail_ip_unknown),
                 style = MaterialTheme.typography.titleSmall,
             )
             Text(
-                text = "MAC ${observation.macAddress ?: "unknown"}",
+                text = stringResource(
+                    R.string.device_detail_mac,
+                    observation.macAddress ?: stringResource(R.string.device_detail_unknown),
+                ),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Text(
-                text = "${observation.source.name} • ${observation.reachability.name} • " +
-                    Instant.ofEpochMilli(observation.observedAt),
+                text = stringResource(
+                    R.string.device_detail_observation_summary,
+                    observation.source.name,
+                    observation.reachability.name,
+                    Instant.ofEpochMilli(observation.observedAt).toString(),
+                ),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -259,23 +286,23 @@ private fun RenameDialog(
 
     AlertDialog(
         onDismissRequest = onDismiss,
-        title = { Text("Rename device") },
+        title = { Text(stringResource(R.string.device_detail_rename)) },
         text = {
             OutlinedTextField(
                 value = name,
                 onValueChange = { name = it },
                 singleLine = true,
-                label = { Text("Display name") },
+                label = { Text(stringResource(R.string.device_detail_display_name)) },
             )
         },
         confirmButton = {
             TextButton(onClick = { onConfirm(name.trim().takeIf { it.isNotEmpty() }) }) {
-                Text("Save")
+                Text(stringResource(R.string.device_detail_save))
             }
         },
         dismissButton = {
             TextButton(onClick = onDismiss) {
-                Text("Cancel")
+                Text(stringResource(R.string.device_detail_cancel))
             }
         },
     )

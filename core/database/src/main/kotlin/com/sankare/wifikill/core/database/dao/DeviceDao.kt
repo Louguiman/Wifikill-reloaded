@@ -49,4 +49,7 @@ interface DeviceDao {
 
     @Query("UPDATE devices SET notes = :notes, updatedAt = :updatedAt WHERE id = :deviceId")
     suspend fun updateNotes(deviceId: String, notes: String?, updatedAt: Long)
+
+    @Query("DELETE FROM devices")
+    suspend fun deleteAll()
 }

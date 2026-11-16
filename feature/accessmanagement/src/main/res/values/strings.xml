@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="access_back">Back</string>
+    <string name="access_title">Access</string>
+    <string name="access_routers">Routers</string>
+    <string name="access_policy_note">Policy changes apply through the router\'s authenticated API and are confirmed by reading the router state back.</string>
+    <string name="access_loading">Loading access state…</string>
+    <string name="access_no_router_title">No authorized router</string>
+    <string name="access_no_router_message">Add a router you administer before changing access policies.</string>
+    <string name="access_router_label">Router</string>
+    <string name="access_device_label">Device</string>
+    <string name="access_no_devices">No discovered devices on this network.</string>
+    <string name="access_block_internet">Block internet</string>
+    <string name="access_allow_internet">Allow internet</string>
+    <string name="access_reason">Reason (optional)</string>
+    <string name="access_applying">Verifying…</string>
+    <string name="access_block_and_verify">Block and verify</string>
+    <string name="access_allow_and_verify">Allow and verify</string>
+    <string name="access_policies_title">Policies on this router</string>
+    <string name="access_no_policies">No policies</string>
+    <string name="access_no_policies_message">Access policies appear here once applied.</string>
+    <string name="access_unknown_device">Unknown device</string>
+    <string name="access_device_fallback">Device %1$s</string>
+    <string name="access_action">Action: %1$s</string>
+    <string name="access_working">Working…</string>
+    <string name="access_verify">Verify</string>
+    <string name="access_remove">Remove</string>
+    <string name="access_status_pending">Pending</string>
+    <string name="access_status_applying">Applying</string>
+    <string name="access_status_active">Active</string>
+    <string name="access_status_removing">Removing</string>
+    <string name="access_status_removed">Removed</string>
+    <string name="access_status_failed">Failed</string>
+    <string name="access_status_unknown">Unverified</string>
+
+    <string name="access_vm_router_first">Add and connect a router first</string>
+    <string name="access_vm_select_device">Select a device</string>
+    <string name="access_vm_policy_status">Policy %1$s after verification</string>
+    <string name="access_vm_policy_removed">Policy removed after verification</string>
+    <string name="access_vm_confirmed">Router confirms the current policy state</string>
+    <string name="access_vm_not_confirmed">Router did not confirm the policy state</string>
+    <string name="access_vm_error">Access policy action failed</string>
+</resources>

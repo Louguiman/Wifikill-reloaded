@@ -24,6 +24,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
@@ -51,21 +52,22 @@ fun RouterManagementScreen(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack) {
-                Text("Back")
+                Text(stringResource(R.string.routers_back))
             }
             Text(
-                text = "Routers",
+                text = stringResource(R.string.routers_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(start = 8.dp),
             )
             Spacer(modifier = Modifier.weight(1f))
             TextButton(onClick = onAddRouter) {
-                Text("Add")
+                Text(stringResource(R.string.routers_add))
             }
         }
 
         Text(
-            text = state.network?.let { it.ssid ?: it.interfaceName } ?: "No authorized network",
+            text = state.network?.let { it.ssid ?: it.interfaceName }
+                ?: stringResource(R.string.routers_no_network),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -86,10 +88,10 @@ fun RouterManagementScreen(
         }
 
         when {
-            state.isLoading -> Text("Loading routers…")
+            state.isLoading -> Text(stringResource(R.string.routers_loading))
             state.routers.isEmpty() -> EmptyState(
-                title = "No routers yet",
-                message = "Add a router you are authorized to administer.",
+                title = stringResource(R.string.routers_empty_title),
+                message = stringResource(R.string.routers_empty_message),
                 modifier = Modifier.fillMaxWidth(),
             )
             else -> LazyColumn(
@@ -140,7 +142,13 @@ private fun RouterCard(
                 )
             }
             Text(
-                text = "${router.host}:${router.port} • ${router.protocol.label} • ${router.adapterType.name}",
+                text = stringResource(
+                    R.string.routers_summary,
+                    router.host,
+                    router.port,
+                    router.protocol.label(),
+                    router.adapterType.name,
+                ),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -149,22 +157,34 @@ private fun RouterCard(
             }
             Text(
                 text = if (router.capabilities.isEmpty()) {
-                    "No verified capabilities"
+                    stringResource(R.string.routers_no_capabilities)
                 } else {
-                    "Verified: " + router.capabilities.joinToString { it.name }
+                    stringResource(
+                        R.string.routers_verified_capabilities,
+                        router.capabilities.joinToString { it.name },
+                    )
                 },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                 if (busy) {
-                    Text("Working…", style = MaterialTheme.typography.bodySmall)
+                    Text(
+                        stringResource(R.string.routers_working),
+                        style = MaterialTheme.typography.bodySmall,
+                    )
                 } else if (router.connectionStatus == RouterConnectionStatus.CONNECTED) {
-                    OutlinedButton(onClick = onDisconnect) { Text("Disconnect") }
+                    OutlinedButton(onClick = onDisconnect) {
+                        Text(stringResource(R.string.routers_disconnect))
+                    }
                 } else {
-                    Button(onClick = onConnect) { Text("Connect") }
+                    Button(onClick = onConnect) {
+                        Text(stringResource(R.string.routers_connect))
+                    }
                 }
-                OutlinedButton(onClick = onForget) { Text("Forget") }
+                OutlinedButton(onClick = onForget) {
+                    Text(stringResource(R.string.routers_forget))
+                }
             }
         }
     }
@@ -191,17 +211,18 @@ fun AddRouterScreen(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack) {
-                Text("Back")
+                Text(stringResource(R.string.routers_back))
             }
             Text(
-                text = "Add router",
+                text = stringResource(R.string.routers_add_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(start = 8.dp),
             )
         }
 
         Text(
-            text = state.network?.let { it.ssid ?: it.interfaceName } ?: "No authorized network",
+            text = state.network?.let { it.ssid ?: it.interfaceName }
+                ?: stringResource(R.string.routers_no_network),
             style = MaterialTheme.typography.bodyMedium,
             color = MaterialTheme.colorScheme.onSurfaceVariant,
         )
@@ -209,21 +230,21 @@ fun AddRouterScreen(
         OutlinedTextField(
             value = state.form.name,
             onValueChange = viewModel::updateName,
-            label = { Text("Name") },
+            label = { Text(stringResource(R.string.routers_name)) },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
         )
         OutlinedTextField(
             value = state.form.host,
             onValueChange = viewModel::updateHost,
-            label = { Text("Host or IP") },
+            label = { Text(stringResource(R.string.routers_host)) },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
         )
         OutlinedTextField(
             value = state.form.port,
             onValueChange = viewModel::updatePort,
-            label = { Text("Port") },
+            label = { Text(stringResource(R.string.routers_port)) },
             singleLine = true,
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             modifier = Modifier.fillMaxWidth(),
@@ -231,26 +252,26 @@ fun AddRouterScreen(
         Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             ProtocolOption(
                 selected = state.form.protocol == RouterProtocol.HTTPS,
-                label = "HTTPS",
+                label = stringResource(R.string.routers_protocol_https),
                 onClick = { viewModel.updateProtocol(RouterProtocol.HTTPS) },
             )
             ProtocolOption(
                 selected = state.form.protocol == RouterProtocol.HTTP,
-                label = "HTTP",
+                label = stringResource(R.string.routers_protocol_http),
                 onClick = { viewModel.updateProtocol(RouterProtocol.HTTP) },
             )
         }
         OutlinedTextField(
             value = state.form.username,
             onValueChange = viewModel::updateUsername,
-            label = { Text("Username") },
+            label = { Text(stringResource(R.string.routers_username)) },
             singleLine = true,
             modifier = Modifier.fillMaxWidth(),
         )
         OutlinedTextField(
             value = state.form.password,
             onValueChange = viewModel::updatePassword,
-            label = { Text("Password") },
+            label = { Text(stringResource(R.string.routers_password)) },
             singleLine = true,
             visualTransformation = PasswordVisualTransformation(),
             keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
@@ -270,7 +291,13 @@ fun AddRouterScreen(
             enabled = !state.isSaving,
             modifier = Modifier.fillMaxWidth(),
         ) {
-            Text(if (state.isSaving) "Saving…" else "Save and connect")
+            Text(
+                if (state.isSaving) {
+                    stringResource(R.string.routers_saving)
+                } else {
+                    stringResource(R.string.routers_save_connect)
+                },
+            )
         }
     }
 }
@@ -284,19 +311,24 @@ private fun ProtocolOption(selected: Boolean, label: String, onClick: () -> Unit
     }
 }
 
-private fun statusLabel(status: RouterConnectionStatus): String = when (status) {
-    RouterConnectionStatus.UNKNOWN -> "Unknown"
-    RouterConnectionStatus.CONNECTING -> "Connecting"
-    RouterConnectionStatus.CONNECTED -> "Connected"
-    RouterConnectionStatus.AUTHENTICATION_FAILED -> "Authentication failed"
-    RouterConnectionStatus.UNREACHABLE -> "Unreachable"
-    RouterConnectionStatus.DISCONNECTED -> "Disconnected"
-}
+@Composable
+private fun statusLabel(status: RouterConnectionStatus): String = stringResource(
+    when (status) {
+        RouterConnectionStatus.UNKNOWN -> R.string.routers_status_unknown
+        RouterConnectionStatus.CONNECTING -> R.string.routers_status_connecting
+        RouterConnectionStatus.CONNECTED -> R.string.routers_status_connected
+        RouterConnectionStatus.AUTHENTICATION_FAILED -> R.string.routers_status_auth_failed
+        RouterConnectionStatus.UNREACHABLE -> R.string.routers_status_unreachable
+        RouterConnectionStatus.DISCONNECTED -> R.string.routers_status_disconnected
+    },
+)
 
-private val RouterProtocol.label: String
-    get() = when (this) {
-        RouterProtocol.HTTP -> "HTTP"
-        RouterProtocol.HTTPS -> "HTTPS"
-        RouterProtocol.ROUTER_API -> "Router API"
-        RouterProtocol.UNKNOWN -> "Unknown"
-    }
+@Composable
+private fun RouterProtocol.label(): String = stringResource(
+    when (this) {
+        RouterProtocol.HTTP -> R.string.routers_protocol_http
+        RouterProtocol.HTTPS -> R.string.routers_protocol_https
+        RouterProtocol.ROUTER_API -> R.string.routers_protocol_api
+        RouterProtocol.UNKNOWN -> R.string.routers_protocol_unknown
+    },
+)

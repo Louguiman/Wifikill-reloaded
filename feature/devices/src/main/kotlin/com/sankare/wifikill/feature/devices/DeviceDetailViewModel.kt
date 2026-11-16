@@ -4,6 +4,7 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sankare.wifikill.core.common.AppResult
+import com.sankare.wifikill.core.common.StringProvider
 import com.sankare.wifikill.core.domain.model.Device
 import com.sankare.wifikill.core.domain.model.DeviceObservation
 import com.sankare.wifikill.core.domain.usecase.GetDeviceDetailsUseCase
@@ -33,6 +34,7 @@ class DeviceDetailViewModel @Inject constructor(
     getDeviceHistory: GetDeviceHistoryUseCase,
     private val renameDevice: RenameDeviceUseCase,
     private val setDeviceTrust: SetDeviceTrustUseCase,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val deviceId: String = checkNotNull(savedStateHandle[DEVICE_ID_ARG])
@@ -69,7 +71,7 @@ class DeviceDetailViewModel @Inject constructor(
 
     private fun handleResult(result: AppResult<Unit>) {
         if (result is AppResult.Failure) {
-            mutableError.value = result.error.message ?: result.error.code.name
+            mutableError.value = result.error.message ?: strings.get(R.string.devices_vm_error)
         }
     }
 

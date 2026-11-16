@@ -4,6 +4,7 @@ import com.sankare.wifikill.core.common.AppError
 import com.sankare.wifikill.core.common.AppErrorCode
 import com.sankare.wifikill.core.domain.model.DiagnosticExecutionEvent
 import com.sankare.wifikill.core.domain.model.DiagnosticRequest
+import com.sankare.wifikill.core.domain.model.DiagnosticResult
 import com.sankare.wifikill.core.domain.repository.DiagnosticsRepository
 import javax.inject.Inject
 import kotlinx.coroutines.flow.Flow
@@ -22,4 +23,11 @@ class RunDiagnosticsUseCase @Inject constructor(
         }
         return repository.execute(request)
     }
+}
+
+class ObserveDiagnosticHistoryUseCase @Inject constructor(
+    private val repository: DiagnosticsRepository,
+) {
+    operator fun invoke(networkId: String): Flow<List<DiagnosticResult>> =
+        repository.observeHistory(networkId)
 }

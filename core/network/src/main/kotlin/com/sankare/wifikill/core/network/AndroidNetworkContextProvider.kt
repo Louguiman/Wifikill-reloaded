@@ -100,6 +100,10 @@ class AndroidNetworkContextProvider(
                 networkType = type,
                 isMetered = !capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_NOT_METERED),
                 isValidated = capabilities.hasCapability(NetworkCapabilities.NET_CAPABILITY_VALIDATED),
+                dnsServers = linkProperties
+                    ?.dnsServers
+                    ?.mapNotNull { it.hostAddress }
+                    .orEmpty(),
             )
         } catch (e: SecurityException) {
             null

@@ -12,6 +12,10 @@ import com.sankare.wifikill.core.network.discovery.DiscoveryEngine
 import com.sankare.wifikill.core.network.discovery.DiscoverySource
 import com.sankare.wifikill.core.network.discovery.LocalReachabilitySource
 import com.sankare.wifikill.core.network.discovery.SubnetScanner
+import com.sankare.wifikill.core.network.diagnostics.AndroidDiagnosticProbe
+import com.sankare.wifikill.core.network.diagnostics.DiagnosticProbe
+import com.sankare.wifikill.core.network.traffic.AndroidLocalTrafficReader
+import com.sankare.wifikill.core.network.traffic.LocalTrafficReader
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -42,6 +46,14 @@ object NetworkModule {
     @Provides
     @Singleton
     fun provideSubnetScanner(): SubnetScanner = DefaultSubnetScanner()
+
+    @Provides
+    @Singleton
+    fun provideDiagnosticProbe(): DiagnosticProbe = AndroidDiagnosticProbe()
+
+    @Provides
+    @Singleton
+    fun provideLocalTrafficReader(): LocalTrafficReader = AndroidLocalTrafficReader()
 
     @Provides
     @IntoSet

@@ -22,6 +22,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -66,10 +67,10 @@ private fun DiscoveryContent(
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
             TextButton(onClick = onBack) {
-                Text("Back")
+                Text(stringResource(R.string.discovery_back))
             }
             Text(
-                text = "Network discovery",
+                text = stringResource(R.string.discovery_title),
                 style = MaterialTheme.typography.headlineSmall,
                 modifier = Modifier.padding(start = 8.dp),
             )
@@ -108,7 +109,7 @@ private fun DiscoveryContent(
                         modifier = Modifier.weight(1f),
                     )
                     TextButton(onClick = onDismissError) {
-                        Text("Dismiss")
+                        Text(stringResource(R.string.discovery_dismiss))
                     }
                 }
             }
@@ -116,7 +117,7 @@ private fun DiscoveryContent(
 
         if (state.isScanning) {
             OutlinedButton(onClick = onCancelScan, modifier = Modifier.fillMaxWidth()) {
-                Text("Cancel scan")
+                Text(stringResource(R.string.discovery_cancel_scan))
             }
         } else {
             Button(
@@ -124,23 +125,27 @@ private fun DiscoveryContent(
                 enabled = state.network?.networkId != null,
                 modifier = Modifier.fillMaxWidth(),
             ) {
-                Text("Scan network")
+                Text(stringResource(R.string.discovery_scan_network))
             }
         }
 
         Text(
-            text = "Devices (${state.devices.size})",
+            text = stringResource(R.string.discovery_devices, state.devices.size),
             style = MaterialTheme.typography.titleMedium,
             modifier = Modifier.padding(top = 8.dp),
         )
 
         if (state.devices.isEmpty()) {
             EmptyState(
-                title = if (state.isScanning) "Discovering devices" else "No devices found yet",
-                message = if (state.isScanning) {
-                    "Probing the local subnet. Results appear as hosts respond."
+                title = if (state.isScanning) {
+                    stringResource(R.string.discovery_discovering)
                 } else {
-                    "Run a scan to discover devices on your authorized network."
+                    stringResource(R.string.discovery_no_devices)
+                },
+                message = if (state.isScanning) {
+                    stringResource(R.string.discovery_probing)
+                } else {
+                    stringResource(R.string.discovery_run_scan)
                 },
                 modifier = Modifier.fillMaxWidth(),
             )
@@ -168,11 +173,16 @@ private fun NetworkSummary(network: NetworkContext?) {
     ) {
         Column(modifier = Modifier.padding(16.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(
-                text = network?.ssid ?: network?.interfaceName ?: "No network",
+                text = network?.ssid ?: network?.interfaceName
+                    ?: stringResource(R.string.discovery_no_network),
                 style = MaterialTheme.typography.titleMedium,
             )
             Text(
-                text = "Subnet ${network?.subnet ?: "unknown"} • Gateway ${network?.gatewayIp ?: "unknown"}",
+                text = stringResource(
+                    R.string.discovery_network_summary,
+                    network?.subnet ?: stringResource(R.string.discovery_unknown),
+                    network?.gatewayIp ?: stringResource(R.string.discovery_unknown),
+                ),
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -196,9 +206,17 @@ private fun DeviceRow(device: Device, onClick: () -> Unit) {
                 text = device.displayName(),
                 style = MaterialTheme.typography.titleSmall,
             )
+            val summary = stringResource(
+                R.string.discovery_device_summary,
+                device.deviceType.name,
+                device.identityConfidence.name,
+            )
             Text(
-                text = "${device.deviceType.name} • confidence ${device.identityConfidence.name}" +
-                    if (device.isTrusted) " • trusted" else "",
+                text = if (device.isTrusted) {
+                    stringResource(R.string.discovery_device_trusted, summary)
+                } else {
+                    summary
+                },
                 style = MaterialTheme.typography.bodySmall,
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
             )
@@ -206,5 +224,6 @@ private fun DeviceRow(device: Device, onClick: () -> Unit) {
     }
 }
 
+@Composable
 private fun Device.displayName(): String =
-    customName ?: hostname ?: manufacturer ?: "Unknown device"
+    customName ?: hostname ?: manufacturer ?: stringResource(R.string.discovery_unknown_device)

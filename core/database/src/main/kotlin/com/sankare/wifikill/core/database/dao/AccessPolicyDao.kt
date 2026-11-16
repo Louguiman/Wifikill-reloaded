@@ -34,4 +34,7 @@ interface AccessPolicyDao {
 
     @Query("DELETE FROM access_policies WHERE id = :policyId")
     suspend fun delete(policyId: String)
+
+    @Query("DELETE FROM access_policies")
+    suspend fun deleteAll()
 }

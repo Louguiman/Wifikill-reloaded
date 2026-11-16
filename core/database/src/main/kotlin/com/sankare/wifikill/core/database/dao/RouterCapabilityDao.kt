@@ -28,4 +28,7 @@ interface RouterCapabilityDao {
 
     @Query("DELETE FROM router_capabilities WHERE routerId = :routerId")
     suspend fun deleteByRouter(routerId: String)
+
+    @Query("DELETE FROM router_capabilities")
+    suspend fun deleteAll()
 }

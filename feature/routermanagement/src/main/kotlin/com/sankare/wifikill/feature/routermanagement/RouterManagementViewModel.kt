@@ -3,6 +3,7 @@ package com.sankare.wifikill.feature.routermanagement
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sankare.wifikill.core.common.AppResult
+import com.sankare.wifikill.core.common.StringProvider
 import com.sankare.wifikill.core.domain.model.NetworkContext
 import com.sankare.wifikill.core.domain.model.Router
 import com.sankare.wifikill.core.domain.usecase.ConnectRouterUseCase
@@ -46,6 +47,7 @@ class RouterManagementViewModel @Inject constructor(
     private val connectRouter: ConnectRouterUseCase,
     private val disconnectRouter: DisconnectRouterUseCase,
     private val removeRouter: RemoveRouterUseCase,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val actions = MutableStateFlow(RouterActionState())
@@ -79,11 +81,16 @@ class RouterManagementViewModel @Inject constructor(
         launchAction(routerId) {
             when (val result = connectRouter(routerId)) {
                 is AppResult.Success -> actions.update {
-                    it.copy(message = "Connected to ${result.data.managementAddress}")
+                    it.copy(
+                        message = strings.get(
+                            R.string.routers_vm_connected,
+                            result.data.managementAddress,
+                        ),
+                    )
                 }
 
                 is AppResult.Failure -> actions.update {
-                    it.copy(error = result.error.message ?: result.error.code.name)
+                    it.copy(error = result.error.message ?: strings.get(R.string.routers_vm_error))
                 }
             }
         }
@@ -92,9 +99,9 @@ class RouterManagementViewModel @Inject constructor(
     fun disconnect(routerId: String) {
         launchAction(routerId) {
             when (val result = disconnectRouter(routerId)) {
-                is AppResult.Success -> actions.update { it.copy(message = "Disconnected") }
+                is AppResult.Success -> actions.update { it.copy(message = strings.get(R.string.routers_vm_disconnected)) }
                 is AppResult.Failure -> actions.update {
-                    it.copy(error = result.error.message ?: result.error.code.name)
+                    it.copy(error = result.error.message ?: strings.get(R.string.routers_vm_error))
                 }
             }
         }
@@ -103,9 +110,9 @@ class RouterManagementViewModel @Inject constructor(
     fun forget(routerId: String) {
         launchAction(routerId) {
             when (val result = removeRouter(routerId)) {
-                is AppResult.Success -> actions.update { it.copy(message = "Router removed") }
+                is AppResult.Success -> actions.update { it.copy(message = strings.get(R.string.routers_vm_removed)) }
                 is AppResult.Failure -> actions.update {
-                    it.copy(error = result.error.message ?: result.error.code.name)
+                    it.copy(error = result.error.message ?: strings.get(R.string.routers_vm_error))
                 }
             }
         }

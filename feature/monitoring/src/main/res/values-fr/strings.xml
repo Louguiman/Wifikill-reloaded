@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="monitoring_back">Retour</string>
+    <string name="monitoring_title">Surveillance</string>
+    <string name="monitoring_note">Il s’agit des totaux des interfaces de cet appareil Android uniquement. Ce ne sont pas des mesures de bande passante par client et ils peuvent inclure le trafic d’autres interfaces de l’appareil.</string>
+    <string name="monitoring_loading">Chargement de l’état de surveillance…</string>
+    <string name="monitoring_no_network">Aucun réseau autorisé</string>
+    <string name="monitoring_no_network_message">Connectez-vous à un réseau Wi-Fi ou Ethernet pour surveiller le trafic local.</string>
+    <string name="monitoring_dismiss">Fermer</string>
+    <string name="monitoring_pause">Pause</string>
+    <string name="monitoring_start">Démarrer</string>
+    <string name="monitoring_refreshing">Actualisation…</string>
+    <string name="monitoring_refresh_now">Actualiser</string>
+    <string name="monitoring_live">En direct · toutes les %1$ds</string>
+    <string name="monitoring_paused">En pause</string>
+    <string name="monitoring_recent_samples">Échantillons récents</string>
+    <string name="monitoring_no_samples">Aucun échantillon pour l’instant</string>
+    <string name="monitoring_no_samples_message">Démarrez la surveillance ou actualisez pour capturer un échantillon de trafic local.</string>
+    <string name="monitoring_latest_sample">Dernier échantillon local</string>
+    <string name="monitoring_reading">Lecture…</string>
+    <string name="monitoring_no_measurement">Aucune mesure disponible pour l’instant.</string>
+    <string name="monitoring_received">Reçu : %1$s</string>
+    <string name="monitoring_sent">Envoyé : %1$s</string>
+    <string name="monitoring_source">Source : %1$s</string>
+    <string name="monitoring_sampled">Échantillonné %1$s</string>
+    <string name="monitoring_sample_summary">Reçu %1$s · Envoyé %2$s</string>
+    <string name="monitoring_unavailable">indisponible</string>
+    <string name="monitoring_no_network_name">Aucun réseau</string>
+    <string name="monitoring_network_at">Réseau sur %1$s</string>
+    <string name="monitoring_unknown_network">Réseau inconnu</string>
+    <string name="monitoring_source_router">Télémétrie du routeur</string>
+    <string name="monitoring_source_android">Total local de l’appareil Android</string>
+    <string name="monitoring_source_unknown">Source inconnue</string>
+
+    <string name="monitoring_vm_unavailable">Les statistiques de trafic sont indisponibles sur cet appareil</string>
+    <string name="monitoring_vm_error">Impossible d’actualiser les statistiques de trafic</string>
+</resources>

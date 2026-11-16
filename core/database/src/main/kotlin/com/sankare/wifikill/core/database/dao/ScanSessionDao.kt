@@ -36,4 +36,7 @@ interface ScanSessionDao {
 
     @Query("DELETE FROM scan_sessions WHERE startedAt < :cutoff")
     suspend fun deleteOlderThan(cutoff: Long): Int
+
+    @Query("DELETE FROM scan_sessions")
+    suspend fun deleteAll()
 }

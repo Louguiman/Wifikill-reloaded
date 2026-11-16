@@ -3,6 +3,7 @@ package com.sankare.wifikill.feature.discovery
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.sankare.wifikill.core.common.AppResult
+import com.sankare.wifikill.core.common.StringProvider
 import com.sankare.wifikill.core.domain.model.Device
 import com.sankare.wifikill.core.domain.model.NetworkContext
 import com.sankare.wifikill.core.domain.model.ObservationSource
@@ -45,6 +46,7 @@ class DiscoveryViewModel @Inject constructor(
     private val startNetworkScan: StartNetworkScanUseCase,
     private val cancelNetworkScan: CancelNetworkScanUseCase,
     private val observeScanEvents: ObserveScanEventsUseCase,
+    private val strings: StringProvider,
 ) : ViewModel() {
 
     private val mutableState = MutableStateFlow(DiscoveryUiState())
@@ -81,7 +83,7 @@ class DiscoveryViewModel @Inject constructor(
                 isScanning = true,
                 devicesFound = 0,
                 errorMessage = null,
-                statusMessage = "Starting scan…",
+                statusMessage = strings.get(R.string.discovery_vm_starting),
             )
         }
 
@@ -129,22 +131,37 @@ class DiscoveryViewModel @Inject constructor(
             observeScanEvents(sessionId).collect { event ->
                 when (event) {
                     is ScanEvent.Started -> mutableState.update {
-                        it.copy(isScanning = true, statusMessage = "Scanning network…")
+                        it.copy(
+                            isScanning = true,
+                            statusMessage = strings.get(R.string.discovery_vm_scanning_network),
+                        )
                     }
 
                     is ScanEvent.SourceStarted -> mutableState.update {
-                        it.copy(statusMessage = "Scanning ${event.source.label()}…")
+                        it.copy(
+                            statusMessage = strings.get(
+                                R.string.discovery_vm_scanning_source,
+                                strings.get(event.source.labelRes()),
+                            ),
+                        )
                     }
 
                     is ScanEvent.SourceCompleted -> mutableState.update {
                         it.copy(
-                            statusMessage = "${event.source.label()}: ${event.devicesFound} found",
+                            statusMessage = strings.get(
+                                R.string.discovery_vm_source_completed,
+                                strings.get(event.source.labelRes()),
+                                event.devicesFound,
+                            ),
                         )
                     }
 
                     is ScanEvent.DeviceDiscovered -> mutableState.update {
                         val found = it.devicesFound + 1
-                        it.copy(devicesFound = found, statusMessage = "Found $found devices")
+                        it.copy(
+                            devicesFound = found,
+                            statusMessage = strings.get(R.string.discovery_vm_found, found),
+                        )
                     }
 
                     is ScanEvent.Progress -> Unit
@@ -154,7 +171,10 @@ class DiscoveryViewModel @Inject constructor(
                             isScanning = false,
                             sessionId = null,
                             devicesFound = event.devicesFound,
-                            statusMessage = "Scan complete: ${event.devicesFound} devices found",
+                            statusMessage = strings.get(
+                                R.string.discovery_vm_complete,
+                                event.devicesFound,
+                            ),
                         )
                     }
 
@@ -176,11 +196,11 @@ class DiscoveryViewModel @Inject constructor(
         super.onCleared()
     }
 
-    private fun ObservationSource.label(): String = when (this) {
-        ObservationSource.ANDROID_NETWORK -> "Android network"
-        ObservationSource.LOCAL_DISCOVERY -> "Local discovery"
-        ObservationSource.ROUTER_INVENTORY -> "Router inventory"
-        ObservationSource.MANUAL -> "Manual entry"
+    private fun ObservationSource.labelRes(): Int = when (this) {
+        ObservationSource.ANDROID_NETWORK -> R.string.discovery_source_android
+        ObservationSource.LOCAL_DISCOVERY -> R.string.discovery_source_local
+        ObservationSource.ROUTER_INVENTORY -> R.string.discovery_source_router
+        ObservationSource.MANUAL -> R.string.discovery_source_manual
     }
 
     private companion object {

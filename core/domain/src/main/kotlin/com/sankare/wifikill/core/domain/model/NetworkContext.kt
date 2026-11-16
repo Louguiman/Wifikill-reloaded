@@ -11,6 +11,7 @@ data class NetworkContext(
     val networkType: NetworkType,
     val isMetered: Boolean,
     val isValidated: Boolean,
+    val dnsServers: List<String> = emptyList(),
 )
 
 enum class NetworkType {
